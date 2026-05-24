@@ -24,11 +24,11 @@ export function ChatWindow(props: { projectId: string }) {
   return (
     <div className="flex h-full">
       <div className="flex-1 flex flex-col min-w-0">
-        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6 bg-soft">
           {messages.length === 0 ? (
             <EmptyState
-              title="Ask anything about your documents"
-              description="Upload documents in your projects, then start asking questions."
+              title="اسأل أي شيء عن مستنداتك"
+              description="ارفع المستندات في مشاريعك، ثم ابدأ بطرح الأسئلة."
             />
           ) : (
             <AnimatePresence initial={false}>
@@ -46,10 +46,10 @@ export function ChatWindow(props: { projectId: string }) {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="flex gap-2 items-center text-slate-400 text-sm pl-2"
+                  className="flex gap-2 items-center text-muted text-sm pr-2"
                 >
-                  <div className="w-2 h-2 rounded-full bg-brand-500 animate-pulse-slow" />
-                  Thinking...
+                  <div className="w-2 h-2 rounded-full bg-teal animate-pulse-slow" />
+                  جاري التفكير...
                 </motion.div>
               )}
             </AnimatePresence>
@@ -57,10 +57,10 @@ export function ChatWindow(props: { projectId: string }) {
           <div ref={bottomRef} />
         </div>
 
-        <div className="border-t border-white/5 bg-surface-900/50 backdrop-blur p-4">
+        <div className="border-t border-border bg-white p-4 shadow-header">
           {cost && (
-            <div className="text-xs text-slate-500 mb-2 text-right">
-              Last query: {cost.tokens} tokens · ~${cost.cost_usd.toFixed(4)}
+            <div className="text-xs text-muted mb-2 text-left">
+              آخر استعلام: {cost.tokens} رمز · ~${cost.cost_usd.toFixed(4)}
             </div>
           )}
           <ChatInput onSend={sendMessage} disabled={isStreaming} />
@@ -73,7 +73,7 @@ export function ChatWindow(props: { projectId: string }) {
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: 320, opacity: 1 }}
             exit={{ width: 0, opacity: 0 }}
-            className="border-l border-white/5 overflow-hidden flex-shrink-0"
+            className="border-r border-border overflow-hidden flex-shrink-0 bg-white"
           >
             <SourcePanel sources={sources} />
           </motion.div>
@@ -82,4 +82,3 @@ export function ChatWindow(props: { projectId: string }) {
     </div>
   )
 }
-

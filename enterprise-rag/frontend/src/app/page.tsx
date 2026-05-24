@@ -1,32 +1,44 @@
 import Link from "next/link"
 
+import { BrandLogo } from "@/components/layout/BrandLogo"
+import { Footer } from "@/components/layout/Footer"
+
 export default function HomePage() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle_at_top,_#1e293b_0,_#020617_55%)]">
-      <div className="max-w-xl w-full px-6 py-8 rounded-2xl bg-surface-900/80 border border-white/10 shadow-xl">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-semibold">
-            RP
+    <div className="min-h-screen flex flex-col bg-white">
+      <main className="flex-1 flex items-center justify-center px-4 py-12">
+        <div className="w-full max-w-xl card-accent-orange px-8 py-10">
+          <div className="flex flex-col items-center text-center gap-6 mb-8">
+            <BrandLogo className="justify-center" />
+            <div>
+              <h1 className="section-header text-center border-b-0 pb-0 mb-2">
+                منصة RAG الذكية
+              </h1>
+              <p className="text-sm text-muted">
+                ارفع مستنداتك وتحدث معها باستخدام الذكاء الاصطناعي — مدعوم من{" "}
+                <span className="font-brand text-brand">WebMeccano</span>
+              </p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-lg font-semibold">Enterprise RAG Platform</h1>
-            <p className="text-sm text-slate-400">
-              Upload documents, then chat with them using GPT-4o.
-            </p>
+          <p className="text-sm text-muted text-center mb-8">
+            انتقل إلى واجهة المحادثة لبدء طرح الأسئلة على مستنداتك المرفوعة.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link href="/chat" className="btn-primary text-center">
+              الذهاب إلى المحادثة
+            </Link>
+            <Link
+              href="/projects"
+              className="btn-accent text-center"
+            >
+              إدارة المشاريع
+            </Link>
           </div>
         </div>
-        <p className="text-sm text-slate-400 mb-6">
-          Continue to the chat interface to start asking questions about your
-          uploaded documents.
-        </p>
-        <Link
-          href="/chat"
-          className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-sm font-medium text-white transition-colors"
-        >
-          Go to Chat
-        </Link>
+      </main>
+      <div className="px-4 pb-4">
+        <Footer />
       </div>
-    </main>
+    </div>
   )
 }
-

@@ -2,12 +2,14 @@
 
 import { useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { ChevronLeft, FolderOpen, Plus, Settings, Sparkles } from "lucide-react"
+import { ChevronRight, FolderOpen, Plus, Settings } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 import { useProjects } from "@/hooks/useProjects"
 import { cn } from "@/lib/utils"
+
+import { BrandLogo } from "./BrandLogo"
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false)
@@ -18,29 +20,27 @@ export function Sidebar() {
     <motion.aside
       animate={{ width: collapsed ? 64 : 260 }}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className="relative h-screen bg-surface-900 border-r border-white/5 flex flex-col overflow-hidden flex-shrink-0"
+      className="relative h-screen bg-white border-l border-border flex flex-col overflow-hidden flex-shrink-0 shadow-header"
     >
-      <div className="h-16 flex items-center px-4 border-b border-white/5">
+      <div className="h-[72px] flex items-center px-3 border-b border-border">
         {!collapsed && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="flex items-center gap-2"
+            className="flex-1 min-w-0"
           >
-            <div className="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center">
-              <Sparkles size={16} className="text-white" />
-            </div>
-            <span className="font-bold text-white text-sm">RAG Platform</span>
+            <BrandLogo />
           </motion.div>
         )}
         <button
           onClick={() => setCollapsed(v => !v)}
           className={cn(
-            "ml-auto p-1.5 rounded-md text-slate-400 hover:text-white hover:bg-white/5 transition-colors",
+            "p-1.5 rounded-brand text-muted hover:text-ink hover:bg-soft transition-colors",
             collapsed && "mx-auto",
           )}
+          aria-label={collapsed ? "توسيع القائمة" : "طي القائمة"}
         >
-          <ChevronLeft
+          <ChevronRight
             size={16}
             className={cn(
               "transition-transform",
@@ -54,19 +54,19 @@ export function Sidebar() {
         <Link
           href="/chat"
           className={cn(
-            "flex items-center gap-2 w-full px-3 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium transition-all group",
-            collapsed && "justify-center",
+            "btn-primary w-full gap-2",
+            collapsed && "justify-center px-2",
           )}
         >
           <Plus size={16} />
-          {!collapsed && <span>New Chat</span>}
+          {!collapsed && <span>محادثة جديدة</span>}
         </Link>
       </div>
 
       {!collapsed && (
         <div className="flex-1 overflow-y-auto px-3 space-y-0.5">
-          <p className="text-xs font-semibold text-slate-500 px-2 py-1 uppercase tracking-wider mt-2">
-            Projects
+          <p className="text-xs font-black text-muted px-2 py-1 uppercase tracking-wider mt-2">
+            المشاريع
           </p>
           <AnimatePresence initial={false}>
             {projects.map(project => (
@@ -79,9 +79,9 @@ export function Sidebar() {
                 <Link
                   href={`/chat/${project.id}`}
                   className={cn(
-                    "flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all group",
+                    "flex items-center gap-2 px-3 py-2 rounded-brand text-sm text-muted hover:text-ink hover:bg-soft transition-all",
                     pathname.includes(project.id) &&
-                      "bg-brand-600/10 text-brand-400 border border-brand-600/20",
+                      "bg-teal/10 text-teal border border-teal/25 font-semibold",
                   )}
                 >
                   <FolderOpen size={14} />
@@ -93,16 +93,16 @@ export function Sidebar() {
         </div>
       )}
 
-      <div className="p-3 border-t border-white/5 space-y-0.5">
+      <div className="p-3 border-t border-border space-y-0.5">
         {[
-          { href: "/projects", icon: FolderOpen, label: "Projects" },
-          { href: "/settings", icon: Settings, label: "Settings" },
-        ].map(item => (
+          { href: "/projects", icon: FolderOpen, label: "المشاريع" },
+          { href: "/projects", icon: Settings, label: "الإعدادات" },
+        ].map((item, i) => (
           <Link
-            key={item.href}
+            key={`${item.href}-${i}`}
             href={item.href}
             className={cn(
-              "flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all",
+              "flex items-center gap-2 px-3 py-2 rounded-brand text-sm text-muted hover:text-ink hover:bg-soft transition-all",
               collapsed && "justify-center",
             )}
           >
@@ -114,4 +114,3 @@ export function Sidebar() {
     </motion.aside>
   )
 }
-

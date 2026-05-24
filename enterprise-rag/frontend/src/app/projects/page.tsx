@@ -3,27 +3,27 @@
 import { useState } from "react"
 import Link from "next/link"
 
-import { Sidebar } from "@/components/layout/Sidebar"
+import { AppShell } from "@/components/layout/AppShell"
 import { useProjects } from "@/hooks/useProjects"
 
 function ProjectsClient() {
-  const { projects, loading } = useProjects()
+  const { projects } = useProjects()
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [creating, setCreating] = useState(false)
 
   return (
-    <main className="flex-1 h-screen bg-[var(--bg-primary)] text-slate-100">
-      <div className="max-w-5xl mx-auto px-6 py-8">
-        <div className="flex items-start justify-between mb-6 gap-4">
+    <main className="flex-1 h-full overflow-y-auto bg-soft">
+      <div className="max-w-content mx-auto px-6 py-8">
+        <div className="flex items-start justify-between mb-8 gap-4 flex-wrap">
           <div className="space-y-1">
-            <h1 className="text-lg font-semibold">Projects</h1>
-            <p className="text-sm text-slate-400">
-              Create a project, upload documents, then open its chat.
+            <h1 className="section-header">المشاريع</h1>
+            <p className="text-sm text-muted">
+              أنشئ مشروعاً، ارفع المستندات، ثم افتح المحادثة.
             </p>
           </div>
           <form
-            className="rounded-xl border border-white/10 bg-surface-900/60 px-4 py-3 flex flex-col gap-2 w-64"
+            className="card-panel px-5 py-4 flex flex-col gap-3 w-full sm:w-72"
             onSubmit={async e => {
               e.preventDefault()
               if (!name.trim()) return
@@ -46,39 +46,39 @@ function ProjectsClient() {
                 }
                 setName("")
                 setDescription("")
-                // simple reload of page data
                 window.location.reload()
               } finally {
                 setCreating(false)
               }
             }}
           >
+            <h3 className="sub-header text-base">مشروع جديد</h3>
             <input
               type="text"
-              placeholder="Project name"
+              placeholder="اسم المشروع"
               value={name}
               onChange={e => setName(e.target.value)}
-              className="w-full rounded-lg bg-surface-800 border border-white/10 px-2 py-1.5 text-xs text-slate-100 placeholder:text-slate-500 focus:outline-none glow-border"
+              className="input-field text-xs"
             />
             <input
               type="text"
-              placeholder="Description (optional)"
+              placeholder="الوصف (اختياري)"
               value={description}
               onChange={e => setDescription(e.target.value)}
-              className="w-full rounded-lg bg-surface-800 border border-white/10 px-2 py-1.5 text-xs text-slate-100 placeholder:text-slate-500 focus:outline-none glow-border"
+              className="input-field text-xs"
             />
             <button
               type="submit"
               disabled={creating || !name.trim()}
-              className="mt-1 inline-flex items-center justify-center rounded-lg bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-xs text-white px-3 py-1.5"
+              className="btn-primary text-xs py-2"
             >
-              {creating ? "Creating..." : "New project"}
+              {creating ? "جاري الإنشاء..." : "إنشاء مشروع"}
             </button>
           </form>
         </div>
         {projects.length === 0 ? (
-          <p className="text-sm text-slate-500">
-            No projects yet. Use the form above to add your first project.
+          <p className="text-sm text-muted">
+            لا توجد مشاريع بعد. استخدم النموذج أعلاه لإضافة أول مشروع.
           </p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -86,18 +86,17 @@ function ProjectsClient() {
               <Link
                 key={project.id}
                 href={`/projects/${project.id}`}
-                className="rounded-xl border border-white/10 bg-surface-900/60 px-4 py-3 hover:border-brand-500/60 hover:bg-surface-800/80 transition-colors"
+                className="card-accent-orange px-5 py-4 hover:shadow-header transition-shadow"
               >
-                <h2 className="text-sm font-semibold truncate">
-                  {project.name}
-                </h2>
+                <span className="badge-pill mb-3">مشروع</span>
+                <h2 className="sub-header text-base truncate">{project.name}</h2>
                 {project.description && (
-                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">
+                  <p className="text-xs text-muted mt-1 line-clamp-2">
                     {project.description}
                   </p>
                 )}
-                <p className="text-[11px] text-slate-500 mt-2">
-                  Created {new Date(project.created_at).toLocaleDateString()}
+                <p className="text-[11px] text-muted mt-3">
+                  أُنشئ في {new Date(project.created_at).toLocaleDateString("ar-EG")}
                 </p>
               </Link>
             ))}
@@ -110,9 +109,8 @@ function ProjectsClient() {
 
 export default function ProjectsPage() {
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
+    <AppShell>
       <ProjectsClient />
-    </div>
+    </AppShell>
   )
 }

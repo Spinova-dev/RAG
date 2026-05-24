@@ -83,29 +83,29 @@ export function UploadZone(props: {
       <div
         {...getRootProps()}
         className={cn(
-          "relative rounded-xl border-2 border-dashed p-8 text-center cursor-pointer transition-all duration-200",
+          "relative rounded-brand border-2 border-dashed p-8 text-center cursor-pointer transition-all duration-200 bg-white",
           isDragActive
-            ? "border-brand-500 bg-brand-600/10 scale-[1.01]"
-            : "border-white/10 hover:border-white/20",
-          status === "success" && "border-emerald-500/50 bg-emerald-500/5",
-          status === "error" && "border-red-500/50 bg-red-500/5",
+            ? "border-teal bg-teal/5 scale-[1.01]"
+            : "border-border hover:border-teal/50",
+          status === "success" && "border-good/50 bg-good/5",
+          status === "error" && "border-bad/50 bg-bad/5",
         )}
       >
         <input {...getInputProps()} />
         <div className="flex flex-col items-center gap-3">
           {status === "uploading" ? (
-            <Loader2 className="text-brand-400 animate-spin" size={32} />
+            <Loader2 className="text-teal animate-spin" size={32} />
           ) : (
-            <div className="w-8 h-8 rounded-full border border-dashed border-slate-600 flex items-center justify-center text-xs text-slate-400">
-              DOC
-            </div>
+            <span className="badge-pill">رفع</span>
           )}
           <div>
-            <p className="text-sm font-medium text-slate-200">
-              {isDragActive ? "Drop files here" : "Drag & drop or click to upload"}
+            <p className="text-sm font-semibold text-ink">
+              {isDragActive
+                ? "أفلت الملفات هنا"
+                : "اسحب وأفلت أو انقر للرفع"}
             </p>
-            <p className="text-xs text-slate-500 mt-1">
-              PDF, DOCX, TXT, CSV, MD — up to 50MB
+            <p className="text-xs text-muted mt-1">
+              PDF, DOCX, TXT, CSV, MD — حتى 50 ميجابايت
             </p>
           </div>
         </div>
@@ -120,18 +120,22 @@ export function UploadZone(props: {
           onKeyDown={e => {
             if (e.key === "Enter") void ingestUrl()
           }}
-          className="flex-1 rounded-lg bg-surface-800 border border-white/10 px-3 py-2.5 text-sm text-slate-200 placeholder:text-slate-500 focus:outline-none glow-border"
+          className="flex-1 input-field"
+          dir="ltr"
         />
         <button
           type="button"
           onClick={() => void ingestUrl()}
           disabled={urlLoading || !urlInput.trim()}
-          className="px-4 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-sm text-white"
+          className="btn-primary shrink-0"
         >
-          {urlLoading ? <Loader2 size={16} className="animate-spin" /> : "Ingest"}
+          {urlLoading ? (
+            <Loader2 size={16} className="animate-spin" />
+          ) : (
+            "استيراد"
+          )}
         </button>
       </div>
     </div>
   )
 }
-

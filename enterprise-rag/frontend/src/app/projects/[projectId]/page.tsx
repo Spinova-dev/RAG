@@ -2,7 +2,7 @@ import Link from "next/link"
 
 import { DocumentList } from "@/components/documents/DocumentList"
 import { UploadZone } from "@/components/documents/UploadZone"
-import { Sidebar } from "@/components/layout/Sidebar"
+import { AppShell } from "@/components/layout/AppShell"
 
 interface Props {
   params: { projectId: string }
@@ -10,24 +10,21 @@ interface Props {
 
 function ProjectDocumentsClient({ projectId }: { projectId: string }) {
   return (
-    <main className="flex-1 h-screen bg-[var(--bg-primary)] text-slate-100">
-      <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
-        <div className="flex items-center justify-between">
+    <main className="flex-1 h-full overflow-y-auto bg-soft">
+      <div className="max-w-content mx-auto px-6 py-8 space-y-8">
+        <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
-            <h1 className="text-lg font-semibold">Project documents</h1>
-            <p className="text-sm text-slate-400">
-              Upload files or ingest URLs, then open chat for this project.
+            <h1 className="section-header">مستندات المشروع</h1>
+            <p className="text-sm text-muted mt-1">
+              ارفع الملفات أو أضف روابط، ثم افتح المحادثة لهذا المشروع.
             </p>
           </div>
-          <Link
-            href={`/chat/${projectId}`}
-            className="text-sm text-brand-400 hover:text-brand-300"
-          >
-            Open chat
+          <Link href={`/chat/${projectId}`} className="btn-primary text-sm">
+            فتح المحادثة
           </Link>
         </div>
         <section className="space-y-4">
-          <h2 className="text-sm font-semibold text-slate-100">Upload</h2>
+          <h2 className="sub-header">رفع المستندات</h2>
           <UploadZone projectId={projectId} />
         </section>
         <DocumentList projectId={projectId} />
@@ -38,9 +35,8 @@ function ProjectDocumentsClient({ projectId }: { projectId: string }) {
 
 export default function ProjectDocumentsPage({ params }: Props) {
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
+    <AppShell>
       <ProjectDocumentsClient projectId={params.projectId} />
-    </div>
+    </AppShell>
   )
 }

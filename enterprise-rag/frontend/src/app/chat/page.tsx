@@ -1,29 +1,24 @@
 import Link from "next/link"
 
-import { Sidebar } from "@/components/layout/Sidebar"
+import { AppShell } from "@/components/layout/AppShell"
 
 export default function ChatPage() {
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <main className="flex-1 h-screen bg-[var(--bg-primary)] text-slate-300 flex items-center justify-center">
-        <div className="px-6 py-8 rounded-2xl bg-surface-900 border border-white/10 max-w-md text-center space-y-4">
-          <h1 className="text-lg font-semibold">Select a project</h1>
-          <p className="text-sm text-slate-400">
-            Choose a project from the sidebar to open its dedicated chat and
-            documents.
+    <AppShell>
+      <main className="h-full bg-soft flex items-center justify-center p-6">
+        <div className="card-accent-teal px-8 py-10 max-w-md text-center space-y-4">
+          <h1 className="section-header border-b-0 pb-0">اختر مشروعاً</h1>
+          <p className="text-sm text-muted">
+            اختر مشروعاً من القائمة الجانبية لفتح المحادثة والمستندات الخاصة به.
           </p>
-          <p className="text-xs text-slate-500">
-            If you do not have a project yet, create one first.
+          <p className="text-xs text-muted">
+            إذا لم يكن لديك مشروع بعد، أنشئ واحداً أولاً.
           </p>
-          <Link
-            href="/projects"
-            className="inline-flex items-center justify-center rounded-lg bg-brand-600 hover:bg-brand-700 text-sm text-white px-4 py-2 transition-colors"
-          >
-            Go to Projects
+          <Link href="/projects" className="btn-primary">
+            الذهاب إلى المشاريع
           </Link>
         </div>
       </main>
-    </div>
+    </AppShell>
   )
 }

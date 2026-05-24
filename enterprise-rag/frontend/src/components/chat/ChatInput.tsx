@@ -28,18 +28,18 @@ export function ChatInput(props: {
           }
         }}
         rows={2}
-        placeholder="Ask anything about your documents..."
-        className="flex-1 resize-none bg-surface-800 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none glow-border"
+        placeholder="اسأل أي شيء عن مستنداتك..."
+        className="flex-1 resize-none input-field py-2.5"
       />
       <button
         type="button"
         onClick={() => void submit()}
         disabled={props.disabled}
-        className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white transition-colors"
+        className="inline-flex items-center justify-center w-11 h-11 rounded-brand btn-accent p-0 disabled:opacity-50"
+        aria-label="إرسال"
       >
-        <Send size={16} />
+        <Send size={16} className="rotate-180" />
       </button>
     </div>
   )
 }
-

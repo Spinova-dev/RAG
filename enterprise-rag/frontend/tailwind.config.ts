@@ -7,25 +7,36 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          900: "#1e3a8a",
+          DEFAULT: "#f78d2b",
+          orange: "#f78d2b",
         },
-        surface: {
-          50: "#f8fafc",
-          100: "#f1f5f9",
-          800: "#1e293b",
-          900: "#0f172a",
-          950: "#020617",
+        teal: {
+          DEFAULT: "#34bfc2",
         },
+        ink: "#111827",
+        muted: "#4b5563",
+        border: "#e5e7eb",
+        soft: "#f9fafb",
+        good: "#16a34a",
+        warn: "#f59e0b",
+        bad: "#dc2626",
+        whatsapp: "#25D366",
       },
       fontFamily: {
-        sans: ["Inter var", "Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+        sans: ['"Cairo"', '"Source Sans Pro"', "sans-serif"],
+        brand: ['"Source Sans Pro"', "sans-serif"],
+      },
+      borderRadius: {
+        brand: "14px",
+        pill: "999px",
+      },
+      boxShadow: {
+        card: "0 2px 10px rgba(0,0,0,0.04)",
+        header: "0 2px 14px rgba(0,0,0,0.06)",
+        badge: "0 2px 8px rgba(247, 141, 43, 0.25)",
+      },
+      maxWidth: {
+        content: "1200px",
       },
       animation: {
         "fade-in": "fadeIn 0.3s ease-out",
@@ -47,4 +58,3 @@ const config: Config = {
 }
 
 export default config
-

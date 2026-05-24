@@ -1,17 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Source+Sans+Pro:wght@300;400;600;700;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-card: #1e2d3d;
-  --accent: #3b82f6;
-  --accent-glow: rgba(59, 130, 246, 0.15);
-  --text-primary: #f1f5f9;
-  --text-muted: #64748b;
-  --border: rgba(148, 163, 184, 0.1);
+  --orange: #f78d2b;
+  --teal: #34bfc2;
+  --ink: #111827;
+  --muted: #4b5563;
+  --border: #e5e7eb;
+  --soft: #f9fafb;
+  --good: #16a34a;
+  --warn: #f59e0b;
+  --bad: #dc2626;
+  --white: #ffffff;
+  --orange-glow: rgba(247, 141, 43, 0.25);
 }
 
 * {
@@ -19,31 +22,77 @@
 }
 
 body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: "Inter", sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  font-family: "Cairo", "Source Sans Pro", sans-serif;
+  line-height: 1.85;
   -webkit-font-smoothing: antialiased;
 }
 
+.font-brand {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  direction: ltr;
+}
+
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--soft);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 2px;
+  background: var(--border);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #d1d5db;
 }
 
 .glow-border:focus {
-  box-shadow: 0 0 0 1px #3b82f6, 0 0 20px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 0 0 2px var(--teal), 0 0 12px rgba(52, 191, 194, 0.2);
+  outline: none;
 }
 
+@layer components {
+  .section-header {
+    @apply text-[22px] font-black text-brand border-b-2 border-brand pb-2;
+  }
+
+  .sub-header {
+    @apply text-lg font-black text-teal;
+  }
+
+  .badge-pill {
+    @apply inline-flex items-center rounded-pill bg-brand px-3 py-1 text-[13px] font-black text-white shadow-badge;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-brand bg-teal px-4 py-2.5 text-sm font-semibold text-white border border-teal/35 transition-opacity hover:opacity-90 disabled:opacity-50;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center rounded-brand bg-brand px-4 py-2.5 text-sm font-black text-white shadow-badge transition-opacity hover:opacity-90 disabled:opacity-50;
+  }
+
+  .card-panel {
+    @apply rounded-brand bg-soft border border-border shadow-card;
+  }
+
+  .card-accent-orange {
+    @apply rounded-brand bg-white border border-border shadow-card border-r-[5px] border-r-brand;
+  }
+
+  .card-accent-teal {
+    @apply rounded-brand bg-white border border-border shadow-card border-r-[5px] border-r-teal;
+  }
+
+  .input-field {
+    @apply w-full rounded-brand bg-white border border-border px-3 py-2 text-sm text-ink placeholder:text-muted focus:outline-none glow-border;
+  }
+}
