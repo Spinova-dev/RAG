@@ -17,9 +17,9 @@ function ProjectsClient() {
       <div className="max-w-content mx-auto px-6 py-8">
         <div className="flex items-start justify-between mb-8 gap-4 flex-wrap">
           <div className="space-y-1">
-            <h1 className="section-header">المشاريع</h1>
+            <h1 className="section-header">Projects</h1>
             <p className="text-sm text-muted">
-              أنشئ مشروعاً، ارفع المستندات، ثم افتح المحادثة.
+              Create a project, upload documents, then open its chat.
             </p>
           </div>
           <form
@@ -52,17 +52,17 @@ function ProjectsClient() {
               }
             }}
           >
-            <h3 className="sub-header text-base">مشروع جديد</h3>
+            <h3 className="sub-header text-base">New project</h3>
             <input
               type="text"
-              placeholder="اسم المشروع"
+              placeholder="Project name"
               value={name}
               onChange={e => setName(e.target.value)}
               className="input-field text-xs"
             />
             <input
               type="text"
-              placeholder="الوصف (اختياري)"
+              placeholder="Description (optional)"
               value={description}
               onChange={e => setDescription(e.target.value)}
               className="input-field text-xs"
@@ -72,13 +72,13 @@ function ProjectsClient() {
               disabled={creating || !name.trim()}
               className="btn-primary text-xs py-2"
             >
-              {creating ? "جاري الإنشاء..." : "إنشاء مشروع"}
+              {creating ? "Creating..." : "Create project"}
             </button>
           </form>
         </div>
         {projects.length === 0 ? (
           <p className="text-sm text-muted">
-            لا توجد مشاريع بعد. استخدم النموذج أعلاه لإضافة أول مشروع.
+            No projects yet. Use the form above to add your first project.
           </p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -88,7 +88,7 @@ function ProjectsClient() {
                 href={`/projects/${project.id}`}
                 className="card-accent-orange px-5 py-4 hover:shadow-header transition-shadow"
               >
-                <span className="badge-pill mb-3">مشروع</span>
+                <span className="badge-pill mb-3">Project</span>
                 <h2 className="sub-header text-base truncate">{project.name}</h2>
                 {project.description && (
                   <p className="text-xs text-muted mt-1 line-clamp-2">
@@ -96,7 +96,7 @@ function ProjectsClient() {
                   </p>
                 )}
                 <p className="text-[11px] text-muted mt-3">
-                  أُنشئ في {new Date(project.created_at).toLocaleDateString("ar-EG")}
+                  Created {new Date(project.created_at).toLocaleDateString("en-US")}
                 </p>
               </Link>
             ))}

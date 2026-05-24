@@ -96,16 +96,16 @@ export function UploadZone(props: {
           {status === "uploading" ? (
             <Loader2 className="text-teal animate-spin" size={32} />
           ) : (
-            <span className="badge-pill">رفع</span>
+            <span className="badge-pill">Upload</span>
           )}
           <div>
             <p className="text-sm font-semibold text-ink">
               {isDragActive
-                ? "أفلت الملفات هنا"
-                : "اسحب وأفلت أو انقر للرفع"}
+                ? "Drop files here"
+                : "Drag & drop or click to upload"}
             </p>
             <p className="text-xs text-muted mt-1">
-              PDF, DOCX, TXT, CSV, MD — حتى 50 ميجابايت
+              PDF, DOCX, TXT, CSV, MD — up to 50MB
             </p>
           </div>
         </div>
@@ -121,7 +121,6 @@ export function UploadZone(props: {
             if (e.key === "Enter") void ingestUrl()
           }}
           className="flex-1 input-field"
-          dir="ltr"
         />
         <button
           type="button"
@@ -132,7 +131,7 @@ export function UploadZone(props: {
           {urlLoading ? (
             <Loader2 size={16} className="animate-spin" />
           ) : (
-            "استيراد"
+            "Ingest"
           )}
         </button>
       </div>

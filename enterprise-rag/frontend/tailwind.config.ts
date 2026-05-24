@@ -23,7 +23,7 @@ const config: Config = {
         whatsapp: "#25D366",
       },
       fontFamily: {
-        sans: ['"Cairo"', '"Source Sans Pro"', "sans-serif"],
+        sans: ['"Source Sans Pro"', '"Cairo"', "sans-serif"],
         brand: ['"Source Sans Pro"', "sans-serif"],
       },
       borderRadius: {

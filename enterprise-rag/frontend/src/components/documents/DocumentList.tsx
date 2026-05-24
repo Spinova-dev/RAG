@@ -7,13 +7,13 @@ import { useDocuments } from "@/hooks/useDocuments"
 function StatusBadge(props: { status: string; error?: string | null }) {
   const status = props.status
   let color = "bg-good"
-  let label = "جاهز"
+  let label = "Ready"
   if (status === "processing") {
     color = "bg-warn"
-    label = "قيد المعالجة"
+    label = "Processing"
   } else if (status === "error") {
     color = "bg-bad"
-    label = "خطأ"
+    label = "Error"
   }
   return (
     <div className="inline-flex items-center gap-1 rounded-pill px-2.5 py-0.5 text-[10px] font-black bg-soft border border-border">
@@ -44,26 +44,26 @@ export function DocumentList(props: { projectId: string }) {
   return (
     <div className="card-panel overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 border-b border-border">
-        <h2 className="sub-header text-base">المستندات</h2>
+        <h2 className="sub-header text-base">Documents</h2>
         {loading && (
-          <span className="text-[11px] text-muted">جاري التحديث…</span>
+          <span className="text-[11px] text-muted">Refreshing…</span>
         )}
       </div>
       {documents.length === 0 ? (
         <div className="px-4 py-6 text-sm text-muted">
-          لا توجد مستندات بعد. ارفع ملفاً أو استورد رابطاً للبدء.
+          No documents yet. Upload a file or ingest a URL to get started.
         </div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full text-right text-xs text-ink">
+          <table className="min-w-full text-left text-xs text-ink">
             <thead className="bg-teal text-white">
               <tr className="text-[11px] font-black">
-                <th className="px-4 py-2.5">الاسم</th>
-                <th className="px-4 py-2.5">النوع</th>
-                <th className="px-4 py-2.5">الأجزاء</th>
-                <th className="px-4 py-2.5">الحالة</th>
-                <th className="px-4 py-2.5">تاريخ الرفع</th>
-                <th className="px-4 py-2.5 text-left">إجراءات</th>
+                <th className="px-4 py-2.5">Name</th>
+                <th className="px-4 py-2.5">Type</th>
+                <th className="px-4 py-2.5">Chunks</th>
+                <th className="px-4 py-2.5">Status</th>
+                <th className="px-4 py-2.5">Uploaded</th>
+                <th className="px-4 py-2.5 text-right">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -85,16 +85,16 @@ export function DocumentList(props: { projectId: string }) {
                     <StatusBadge status={doc.status} error={doc.error_msg} />
                   </td>
                   <td className="px-4 py-2.5 text-[11px] text-muted">
-                    {new Date(doc.created_at).toLocaleString("ar-EG")}
+                    {new Date(doc.created_at).toLocaleString("en-US")}
                   </td>
-                  <td className="px-4 py-2.5 text-left">
+                  <td className="px-4 py-2.5 text-right">
                     <button
                       type="button"
                       onClick={() => void deleteDoc(doc.id)}
                       className="inline-flex items-center justify-center rounded-brand border border-bad/40 text-bad hover:bg-bad/5 px-2 py-1 text-[11px] gap-1"
                     >
                       <Trash2 size={12} />
-                      حذف
+                      Delete
                     </button>
                   </td>
                 </tr>

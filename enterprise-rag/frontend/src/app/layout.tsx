@@ -2,14 +2,14 @@ import "./globals.css"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "WebMeccano RAG | منصة الذكاء الاصطناعي",
+  title: "WebMeccano RAG | Enterprise AI Platform",
   description:
-    "منصة RAG من WebMeccano — تحدث مع مستنداتك باستخدام الذكاء الاصطناعي",
+    "WebMeccano RAG platform — chat with your documents using AI",
 }
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="en" dir="ltr">
       <body>{props.children}</body>
     </html>
   )

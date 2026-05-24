@@ -14,7 +14,7 @@ export function MessageBubble(props: { message: Message }) {
         className={
           isUser
             ? "max-w-[80%] rounded-brand bg-brand text-white px-4 py-2.5 text-sm shadow-badge"
-            : "max-w-[80%] rounded-brand bg-white text-ink px-4 py-3 text-sm border border-border shadow-card border-r-[5px] border-r-teal prose prose-sm max-w-none"
+            : "max-w-[80%] rounded-brand bg-white text-ink px-4 py-3 text-sm border border-border shadow-card border-l-[5px] border-l-teal prose prose-sm max-w-none"
         }
       >
         {isUser ? (

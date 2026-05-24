@@ -3,8 +3,8 @@ import type { Source } from "@/types/chat"
 export function SourcePanel(props: { sources: Source[] }) {
   return (
     <aside className="h-full w-80 bg-white px-4 py-4 flex flex-col gap-3">
-      <h3 className="sub-header text-sm">المصادر</h3>
-      <div className="flex-1 overflow-y-auto space-y-3 pl-1">
+      <h3 className="sub-header text-sm">Sources</h3>
+      <div className="flex-1 overflow-y-auto space-y-3 pr-1">
         {props.sources.map(source => {
           const pct = Math.round(source.similarity * 100)
           let barColor = "bg-bad"
@@ -17,10 +17,10 @@ export function SourcePanel(props: { sources: Source[] }) {
             >
               <div className="flex justify-between items-center gap-2">
                 <span className="font-black text-ink">
-                  مستند {source.document_id.slice(0, 8)}
+                  Doc {source.document_id.slice(0, 8)}
                 </span>
                 <span className="text-muted text-[10px]">
-                  صفحة {source.page}
+                  Page {source.page}
                 </span>
               </div>
               <p className="text-muted line-clamp-3 whitespace-pre-wrap">
@@ -41,7 +41,7 @@ export function SourcePanel(props: { sources: Source[] }) {
           )
         })}
         {props.sources.length === 0 && (
-          <p className="text-xs text-muted">لا توجد مصادر بعد.</p>
+          <p className="text-xs text-muted">No sources yet.</p>
         )}
       </div>
     </aside>

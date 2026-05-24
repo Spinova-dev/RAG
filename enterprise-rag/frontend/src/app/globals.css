@@ -24,7 +24,7 @@
 body {
   background: var(--white);
   color: var(--ink);
-  font-family: "Cairo", "Source Sans Pro", sans-serif;
+  font-family: "Source Sans Pro", "Cairo", sans-serif;
   line-height: 1.85;
   -webkit-font-smoothing: antialiased;
 }
@@ -85,11 +85,11 @@ body {
   }
 
   .card-accent-orange {
-    @apply rounded-brand bg-white border border-border shadow-card border-r-[5px] border-r-brand;
+    @apply rounded-brand bg-white border border-border shadow-card border-l-[5px] border-l-brand;
   }
 
   .card-accent-teal {
-    @apply rounded-brand bg-white border border-border shadow-card border-r-[5px] border-r-teal;
+    @apply rounded-brand bg-white border border-border shadow-card border-l-[5px] border-l-teal;
   }
 
   .input-field {

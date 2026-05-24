@@ -28,7 +28,7 @@ export function ChatInput(props: {
           }
         }}
         rows={2}
-        placeholder="اسأل أي شيء عن مستنداتك..."
+        placeholder="Ask anything about your documents..."
         className="flex-1 resize-none input-field py-2.5"
       />
       <button
@@ -36,9 +36,9 @@ export function ChatInput(props: {
         onClick={() => void submit()}
         disabled={props.disabled}
         className="inline-flex items-center justify-center w-11 h-11 rounded-brand btn-accent p-0 disabled:opacity-50"
-        aria-label="إرسال"
+        aria-label="Send"
       >
-        <Send size={16} className="rotate-180" />
+        <Send size={16} />
       </button>
     </div>
   )

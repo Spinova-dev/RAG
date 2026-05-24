@@ -14,17 +14,17 @@ function ProjectDocumentsClient({ projectId }: { projectId: string }) {
       <div className="max-w-content mx-auto px-6 py-8 space-y-8">
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
-            <h1 className="section-header">مستندات المشروع</h1>
+            <h1 className="section-header">Project documents</h1>
             <p className="text-sm text-muted mt-1">
-              ارفع الملفات أو أضف روابط، ثم افتح المحادثة لهذا المشروع.
+              Upload files or add URLs, then open chat for this project.
             </p>
           </div>
           <Link href={`/chat/${projectId}`} className="btn-primary text-sm">
-            فتح المحادثة
+            Open chat
           </Link>
         </div>
         <section className="space-y-4">
-          <h2 className="sub-header">رفع المستندات</h2>
+          <h2 className="sub-header">Upload documents</h2>
           <UploadZone projectId={projectId} />
         </section>
         <DocumentList projectId={projectId} />

@@ -12,26 +12,24 @@ export default function HomePage() {
             <BrandLogo className="justify-center" />
             <div>
               <h1 className="section-header text-center border-b-0 pb-0 mb-2">
-                منصة RAG الذكية
+                Smart RAG Platform
               </h1>
               <p className="text-sm text-muted">
-                ارفع مستنداتك وتحدث معها باستخدام الذكاء الاصطناعي — مدعوم من{" "}
-                <span className="font-brand text-brand">WebMeccano</span>
+                Upload your documents and chat with them using AI — powered by
+                WebMeccano.
               </p>
             </div>
           </div>
           <p className="text-sm text-muted text-center mb-8">
-            انتقل إلى واجهة المحادثة لبدء طرح الأسئلة على مستنداتك المرفوعة.
+            Go to the chat interface to start asking questions about your
+            uploaded documents.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/chat" className="btn-primary text-center">
-              الذهاب إلى المحادثة
+              Go to Chat
             </Link>
-            <Link
-              href="/projects"
-              className="btn-accent text-center"
-            >
-              إدارة المشاريع
+            <Link href="/projects" className="btn-accent text-center">
+              Manage Projects
             </Link>
           </div>
         </div>
