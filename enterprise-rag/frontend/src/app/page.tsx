@@ -1,12 +1,11 @@
 import Link from "next/link"
 
 import { BrandLogo } from "@/components/layout/BrandLogo"
-import { Footer } from "@/components/layout/Footer"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <main className="flex-1 flex items-center justify-center px-4 py-12">
+      <main className="flex-1 flex items-center justify-center px-4 py-12 min-h-screen">
         <div className="w-full max-w-xl card-accent-orange px-8 py-10">
           <div className="flex flex-col items-center text-center gap-6 mb-8">
             <BrandLogo className="justify-center" />
@@ -34,9 +33,6 @@ export default function HomePage() {
           </div>
         </div>
       </main>
-      <div className="px-4 pb-4">
-        <Footer />
-      </div>
     </div>
   )
 }
